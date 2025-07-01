@@ -31,7 +31,7 @@ collections:
   # ---------------------
   - name: "posts" # 集合的内部名称，必须是唯一的
     label: "博客文章" # 在后台界面上显示的名称
-    folder: "source/_posts" # 你的Markdown文章存放的文件夹
+    folder: "2025/04/100" # 你的Markdown文章存放的文件夹
     create: true # 允许在后台创建新文章
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 新文章的文件名格式，Hexo标准格式
     # -----------------
