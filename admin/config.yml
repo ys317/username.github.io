@@ -1,0 +1,61 @@
+# ===================================================================
+# Decap CMS (原Netlify CMS) for Hexo + GitHub 配置文件模板
+# ===================================================================
+
+# ---------------------------------
+# 1. 后端(Backend)配置：指定内容存储在哪里
+# ---------------------------------
+# 这里我们使用GitHub作为后端。
+backend:
+  name: github
+  repo: ys317/username.github.io # 替换成你的GitHub用户名和仓库名
+  branch: main # 替换成你存放Hexo源文件的分支，通常是 main 或 master 或 source
+
+# ---------------------------------
+# 2. 媒体(Media)文件配置：指定上传的图片存放在哪里
+# ---------------------------------
+# 当你在后台上传图片时，图片文件会存放在这个路径下。
+media_folder: "source/images/uploads" # 建议的图片存放路径
+# 网页上引用图片时使用的路径。
+# {{slug}}是一个变量，代表文章的文件名（不含后缀）。
+# 如果你希望所有图片都放在一起，可以直接写成 "/images/uploads"
+public_folder: "/images/uploads"
+
+# ---------------------------------
+# 3. 内容集合(Collections)配置：定义你可以编辑的内容类型
+# ---------------------------------
+# 对于Hexo博客，我们通常只需要一个“文章”集合。
+collections:
+  # ---------------------
+  # 博客文章集合
+  # ---------------------
+  - name: "posts" # 集合的内部名称，必须是唯一的
+    label: "博客文章" # 在后台界面上显示的名称
+    folder: "source/_posts" # 你的Markdown文章存放的文件夹
+    create: true # 允许在后台创建新文章
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 新文章的文件名格式，Hexo标准格式
+    # -----------------
+    # 文章字段(Fields)定义：这是最重要的部分！
+    # 定义了每篇文章有哪些元数据(Front-matter)以及正文。
+    # 这里的字段必须和你Hexo主题要求的Front-matter匹配。
+    # -----------------
+    fields:
+      - { label: "文章标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime" }
+      - { label: "更新日期", name: "updated", widget: "datetime", required: false } # 'required: false'表示这个字段是可选的
+      - { label: "标签", name: "tags", widget: "list", required: false } # 'widget: list' 允许你添加多个标签
+      - { label: "分类", name: "categories", widget: "list", required: false }
+      - { label: "封面图片", name: "cover", widget: "image", required: false } # 'widget: image' 会提供一个图片上传/选择器
+      - { label: "文章摘要", name: "excerpt", widget: "string", required: false }
+      - { label: "正文内容", name: "body", widget: "markdown" } # 'widget: markdown' 是主要的Markdown编辑器
+
+# ---------------------------------
+# 4. (可选) 本地化配置
+# ---------------------------------
+# 如果你需要中文界面
+locale: 'zh_Hans' 
+# ---------------------------------
+# 5. (可选) 编辑器配置
+# ---------------------------------
+editor:
+  preview_style: "font-family: sans-serif; font-size: 16px; line-height: 1.6;" # 自定义Markdown编辑器的预览样式
